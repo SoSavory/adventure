@@ -1,0 +1,9 @@
+<ul>
+  <% Story.all.each do |story| %>
+    <li>
+      <%= link_to story.title, story %> <%= link_to "Edit", edit_story_path(story) %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to "New Story", new_story_path %>

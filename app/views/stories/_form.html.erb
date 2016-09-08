@@ -1,0 +1,32 @@
+<div id="container" style="width:40%; float:left;">
+  <%= form_for @story, html: {id: "story_form"} do |f| %>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+    <br/>
+    <%= f.label :summary %>
+    <%= f.text_area :summary %>
+    <br/>
+
+        <% @story.pages.each do |page| %>
+          <p><%= page.title %> <%= link_to "Edit", edit_page_path(page), remote: true %> </p>
+        <% end %>
+
+    <br/>
+    <%= f.submit %>
+  <% end %>
+</div>
+
+<% if @story.persisted? %>
+  <% if @story.has_first_page? %>
+    <%= link_to "Edit", edit_page_path(@story.pages.first), remote: true %>
+  <% else %>
+    <%= render partial: 'pages/form' %>
+  <% end %>
+<% end %>
+
+
+<div id="form_area" style="width: 50%; float:right; border:1px solid black;">
+</div>
+
+<div id="page_add_area" style="width: 50%; float:right; border:1px solid black;">
+</div>

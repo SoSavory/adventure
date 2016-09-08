@@ -1,0 +1,15 @@
+<%= form_for(@page, remote: true) do |f| %>
+  <%= f.label      :title %>
+  <%= f.text_field :title %>
+
+   <br/>
+
+   <%= f.label     :text %>
+   <%= f.text_area :text %>
+
+   <% if f.object.persisted? %>
+      <%= link_to "Add Page", add_page_path(page_parent: f.object.id), remote: true  %>
+   <% end %>
+
+   <%= f.submit %>
+<% end %>
