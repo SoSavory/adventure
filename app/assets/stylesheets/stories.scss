@@ -11,14 +11,14 @@
 #story_left_container{
   height: 100%;
   width: 40%;
-  float:left;
+  float:right;
 }
 
 #page_right_container{
   height: 100%;
   width: 50%;
-  float: right;
-  margin-right:1em;
+  float: left;
+  margin-left:1em;
 }
 
 #story_story_title{
@@ -26,7 +26,7 @@
   font-size: 2em;
   font-style: italic;
   margin-bottom: 0.5em;
-  padding: 1em;
+  padding:0 1em 1em 0;
 }
 
 #page{
@@ -52,6 +52,7 @@
   text-align:center;
   height: 100%;
   width: 100%;
+  min-height: 480px;
   max-height: 480px;
   overflow-y: scroll;
 }
@@ -81,10 +82,30 @@
   font-style: italic;
 }
 
+#story_button_container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+#back_button{
+  color: $yellow;
+  border: 1px solid $yellow;
+  padding: 0.5em;
+  margin-right: 1em;
+}
+
+#back_button:hover{
+  color: $white;
+  background-color: $yellow;
+  font-style: italic;
+}
+
 #restart_button{
   color: $crimson;
   border: 1px solid $crimson;
   padding:0.5em;
+  margin-left: 1em;
 }
 
 #restart_button:hover{

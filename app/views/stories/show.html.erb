@@ -5,7 +5,10 @@
       <h1 id="story_story_title"></h1>
       <p id="story_story_summary"></p>
       <div id="child_pages_container"></div>
-      <a id="restart_button" onclick="backToStart()">Restart</a>
+      <div id="story_button_container">
+        <a id="back_button" onclick="cyclePages()">Previous Page</a>
+        <a id="restart_button" onclick="backToStart()">Restart</a>
+      </div>
     </div>
   </div>
 
@@ -28,14 +31,23 @@
   })[0].id;
 
   $current_page = $start_page;
+  $previous_pages = [];
+  $previous_pages_current_index = -1;
 
-  function setCurrentPage(id){
+  function setCurrentPage(id, set_previous){
     $current_page = $story.pages.filter(function(val) {
       return val.id === id;
     })[0];
+    //check if page already exists in array, if so, ignore it.
+    if (set_previous === true) {
+      $previous_pages.push($current_page.id);
+      $previous_pages_current_index++;
+    };
+
     setPageTitle($current_page);
     setChildPages($current_page);
     setCurrentText($current_page);
+
   };
 
   function setPageTitle(page){
@@ -48,7 +60,7 @@
       return val.parent_id === page.id;
     });
     $.each($child_pages, function() {
-      $("#child_pages_container").append("<a class='child_page_link' onClick='setCurrentPage(" + this.id + ")'>" + this.title + "</a>");
+      $("#child_pages_container").append("<a class='child_page_link' onClick='setCurrentPage(" + this.id + ", true)'>" + this.title + "</a>");
     });
   };
 
@@ -56,13 +68,31 @@
     $("#story_page_text").html(page.text);
   };
 
-  function backToStart(){
-    setCurrentPage($start_page);
+  function cyclePages(){
+    try {
+      setCurrentPage($previous_pages[$previous_pages_current_index - 1], false);
+    } catch(err) {
+      alert('You are already on the first page.');
+    } finally {
+      if ($previous_pages_current_index === 0) {
+        $previous_pages_current_index = 0
+      } else {
+        $previous_pages_current_index = ($previous_pages_current_index - 1);
+      }
+    }
+
+
   }
+
+  function backToStart(){
+    $previous_pages = [];
+    $previous_pages_current_index = -1;
+    setCurrentPage($start_page);
+  };
 
   // $.each($story.pages, function() {
   //   $("#pages").append("<li onClick='setCurrentPage(" + this.id + ")'>" + this.title + "</li>");
   // });
 
-  setCurrentPage($current_page);
+  setCurrentPage($current_page, true);
 </script>
