@@ -1,48 +1,31 @@
-<div id="container" style="width:70%; float:left;">
-  <div style="border: 1px solid black; padding: 1em;">
-    <%= @story %>
+<div id="story_container" class="container">
+
+  <div id="story_left_container">
+    <div id="story_info">
+      <h1 id="story_story_title"></h1>
+      <p id="story_story_summary"></p>
+      <div id="child_pages_container"></div>
+      <a id="restart_button" onclick="backToStart()">Restart</a>
+    </div>
   </div>
 
-  <h1 id="title">
-  </h1>
-
-  <div>
-    <h2>All Pages</h1>
-    <ul id="pages">
-    </ul>
-  </div>
-
-  <h2 id="levels">
-  </h2>
-
-  <h3 id="page_title">
-  </h3>
-
-  <p id="text">
-  </p>
-
-  <div>
-    <h2>Child Pages</h2>
-    <ul id="child_pages_list">
-    </ul>
+  <div id="page_right_container">
+    <div id="page">
+      <h3 id="story_page_title"></h3>
+      <p id="story_page_text"></p>
+    </div>
   </div>
 
 </div>
-
-
-<div id="form_area" style="width: 20%; float:right; border:1px solid black;">
-</div>
-
-
-
 
 <script>
   $story = JSON.parse(<%= raw @story.to_json %>);
-  $('#title').html($story.title);
+  $('#story_story_title').html($story.title);
+  $('#story_story_summary').html($story.summary);
 
   $start_page = $story.pages.filter(function(val) {
     return val.level === $story.levels[0];
-  })[0];
+  })[0].id;
 
   $current_page = $start_page;
 
@@ -56,24 +39,30 @@
   };
 
   function setPageTitle(page){
-    $("#page_title").html(page.title);
+    $("#story_page_title").html(page.title);
   };
 
   function setChildPages(page){
-    $("#child_pages_list").html("");
+    $("#child_pages_container").html("");
     $child_pages = $story.pages.filter(function(val) {
       return val.parent_id === page.id;
     });
     $.each($child_pages, function() {
-      $("#child_pages_list").append("<li onClick='setCurrentPage(" + this.id + ")'>" + this.title + "</li>");
+      $("#child_pages_container").append("<a class='child_page_link' onClick='setCurrentPage(" + this.id + ")'>" + this.title + "</a>");
     });
   };
 
   function setCurrentText(page){
-    $("#text").html(page.text);
+    $("#story_page_text").html(page.text);
   };
 
-  $.each($story.pages, function() {
-    $("#pages").append("<li onClick='setCurrentPage(" + this.id + ")'>" + this.title + "</li>");
-  });
+  function backToStart(){
+    setCurrentPage($start_page);
+  }
+
+  // $.each($story.pages, function() {
+  //   $("#pages").append("<li onClick='setCurrentPage(" + this.id + ")'>" + this.title + "</li>");
+  // });
+
+  setCurrentPage($current_page);
 </script>

@@ -3,7 +3,7 @@ class Story < ActiveRecord::Base
 
 
   def build_story_hash
-    story_hash = {title: self.title, levels: [], pages: []}
+    story_hash = {title: self.title, summary: self.summary, levels: [], pages: []}
     pages = Page.where(story_id: self).order('id ASC').pluck(:id, :parent_id, :title, :level, :text)
 
     levels = Page.where(story_id: self).order('level ASC').pluck(:level).uniq
@@ -35,6 +35,10 @@ class Story < ActiveRecord::Base
     else
       false
     end
+  end
+
+  def first_page
+
   end
 
 
