@@ -1,0 +1,94 @@
+@import 'vars';
+
+#story_container{
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2em;
+  padding: 1em;
+  border-radius:4px;
+}
+
+#story_left_container{
+  height: 100%;
+  width: 40%;
+  float:left;
+}
+
+#page_right_container{
+  height: 100%;
+  width: 50%;
+  float: right;
+  margin-right:1em;
+}
+
+#story_story_title{
+  color: $white;
+  font-size: 2em;
+  font-style: italic;
+  margin-bottom: 0.5em;
+  padding: 1em;
+}
+
+#page{
+  background-color: $white;
+  padding:1em;
+  height: 100%;
+}
+
+#story_info{
+  padding: 1em;
+  width: 100%;
+  height: 100%;
+}
+
+#story_page_title{
+  color: $blue;
+  text-decoration: underline;
+  text-align:center;
+}
+
+#story_page_text{
+  color: $blue;
+  text-align:center;
+  height: 100%;
+  width: 100%;
+  max-height: 480px;
+  overflow-y: scroll;
+}
+
+#child_pages_container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap:wrap;
+  justify-content: flex-start;
+  padding:1em 0 1em 0;
+  max-height: 480px;
+  overflow-y: scroll;
+}
+
+.child_page_link{
+  text-decoration:none;
+  color: $aqua;
+  border: 1px solid $aqua;
+  padding: 1em;
+  margin: 1em 0 1em 0;
+}
+
+.child_page_link:hover{
+  color: $white;
+  background-color: $aqua;
+  cursor: pointer;
+  font-style: italic;
+}
+
+#restart_button{
+  color: $crimson;
+  border: 1px solid $crimson;
+  padding:0.5em;
+}
+
+#restart_button:hover{
+  color: $white;
+  background-color: $crimson;
+  font-style: italic;
+}
