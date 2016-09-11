@@ -6,7 +6,9 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Story.create(title: "Test Story", summary: "Once upon a time... There was a test story")
+User.create(username: "Admin", password: "admin")
+
+Story.create(title: "Test Story", summary: "Once upon a time... There was a test story", user: User.first)
 
 Page.create(title: "The first page", text: "Once upon a time there was a second page", level: 0, story: Story.first)
 

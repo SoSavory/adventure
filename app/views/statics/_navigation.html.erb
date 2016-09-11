@@ -1,4 +1,17 @@
 <div id="nav">
-  <%= link_to 'Home', root_path %>
-  <%= link_to 'My Profile' %>
+  <div id="nav_section_left">
+    <%= link_to "Adventure", root_path, id: 'logo' %>
+  </div>
+
+  <div id="nav_section_right">
+    <div id="nav_box_link_container">
+      <%= link_to "Stories", stories_path, id: "nav_box_link" %>
+      <% if user_signed_in? %>
+        <%= link_to "My Profile", user_path(current_user), id: "nav_box_link" %>
+        <%= link_to "Sign Out", destroy_user_session_path, method: 'delete', id: "nav_box_link" %>
+      <% else %>
+        <%= link_to "Sign In", new_user_session_path, id: "nav_box_link" %>
+      <% end %>
+    </div>
+  </div>
 </div>

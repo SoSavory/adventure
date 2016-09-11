@@ -1,9 +1,10 @@
 class Story < ActiveRecord::Base
+  belongs_to :user
   has_many :pages
 
 
   def build_story_hash
-    story_hash = {title: self.title, summary: self.summary, levels: [], pages: []}
+    story_hash = {title: self.title, author: self.user.username, summary: self.summary, levels: [], pages: []}
     pages = Page.where(story_id: self).order('id ASC').pluck(:id, :parent_id, :title, :level, :text)
 
     levels = Page.where(story_id: self).order('level ASC').pluck(:level).uniq

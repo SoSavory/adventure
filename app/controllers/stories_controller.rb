@@ -1,10 +1,13 @@
 class StoriesController < ApplicationController
+
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
   def new
     @story = Story.new()
   end
 
   def create
     @story = Story.new(story_params)
+    @story.user = current_user
     if @story.save
       session[:page_parent_id] = nil
       session[:page_story_id]  = nil
@@ -35,6 +38,9 @@ class StoriesController < ApplicationController
 
   def show
     @story = Story.find(params[:id]).build_story_hash
+  end
+
+  def index
   end
 
   private

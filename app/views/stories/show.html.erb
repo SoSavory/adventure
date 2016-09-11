@@ -1,29 +1,33 @@
 <div id="story_container" class="container">
 
-  <div id="story_left_container">
+  <div id="story_right_container">
     <div id="story_info">
       <h1 id="story_story_title"></h1>
+      <h2 id="story_story_author"></h2>
       <p id="story_story_summary"></p>
       <div id="child_pages_container"></div>
       <div id="story_button_container">
+        <div id="reminder" onclick="$(this).hide(500)"></div>
         <a id="back_button" onclick="cyclePages()">Previous Page</a>
         <a id="restart_button" onclick="backToStart()">Restart</a>
       </div>
     </div>
   </div>
 
-  <div id="page_right_container">
+  <div id="page_left_container">
     <div id="page">
       <h3 id="story_page_title"></h3>
       <p id="story_page_text"></p>
     </div>
   </div>
 
+
 </div>
 
 <script>
   $story = JSON.parse(<%= raw @story.to_json %>);
   $('#story_story_title').html($story.title);
+  $('#story_story_author').html("By: " + $story.author);
   $('#story_story_summary').html($story.summary);
 
   $start_page = $story.pages.filter(function(val) {
@@ -43,11 +47,10 @@
       $previous_pages.push($current_page.id);
       $previous_pages_current_index++;
     };
-
     setPageTitle($current_page);
     setChildPages($current_page);
     setCurrentText($current_page);
-
+    $("#reminder").hide();
   };
 
   function setPageTitle(page){
@@ -72,7 +75,8 @@
     try {
       setCurrentPage($previous_pages[$previous_pages_current_index - 1], false);
     } catch(err) {
-      alert('You are already on the first page.');
+      $('#reminder').html("You are already on the first page.");
+      $('#reminder').show(500);
     } finally {
       if ($previous_pages_current_index === 0) {
         $previous_pages_current_index = 0
@@ -80,8 +84,6 @@
         $previous_pages_current_index = ($previous_pages_current_index - 1);
       }
     }
-
-
   }
 
   function backToStart(){
