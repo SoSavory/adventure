@@ -7,22 +7,33 @@
     <%= f.text_area :summary %>
     <br/>
 
-        <% @story.pages.each do |page| %>
-          <p><%= page.title %> <%= link_to "Edit", edit_page_path(page), remote: true %> </p>
-        <% end %>
+    <%= f.label :published %>
+    <%= f.check_box :published %>
 
-    <br/>
+    <% if @story.persisted? %>
+      <% if @story.has_first_page? %>
+        <%= link_to "Edit First Page", edit_page_path(@story.pages.first), remote: true %>
+      <% else %>
+        <%= render partial: 'pages/form' %>
+      <% end %>
+    <% end %>
+
+
+    <% if @story.has_first_page? %>
+      <% (@story.levels[0]..@story.levels[1]).each do |level| %>
+        <ul class="level">
+        <% @story.pages.where(level: level).each do |page| %>
+          <li class="edit_page_page"><%= page.title %> <%= link_to "Edit", edit_page_path(page), remote: true %> </li>
+        <% end %>
+        </div>
+      <% end %>
+    <% end %>
+
+
     <%= f.submit %>
   <% end %>
 </div>
 
-<% if @story.persisted? %>
-  <% if @story.has_first_page? %>
-    <%= link_to "Edit", edit_page_path(@story.pages.first), remote: true %>
-  <% else %>
-    <%= render partial: 'pages/form' %>
-  <% end %>
-<% end %>
 
 
 <div id="form_area" style="width: 50%; float:right; border:1px solid black;">
