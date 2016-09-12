@@ -60,7 +60,7 @@
   min-height: 480px;
   max-height: 480px;
   margin-top: 1em;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 #child_pages_container{
@@ -70,7 +70,7 @@
   justify-content: flex-start;
   padding:1em 0 1em 0;
   max-height: 480px;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .child_page_link{
