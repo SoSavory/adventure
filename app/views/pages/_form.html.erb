@@ -7,9 +7,12 @@
    <%= f.label     :text %>
    <%= f.text_area :text %>
 
+
    <% if f.object.persisted? %>
       <%= link_to "Add Page", add_page_path(page_parent: f.object.id), remote: true  %>
    <% end %>
+
+   <%#= hidden_field_tag :first_page_check, first_page_check %>
 
    <%= f.submit %>
 <% end %>

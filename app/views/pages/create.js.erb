@@ -1,1 +1,9 @@
-$('#page_add_area').html('');
+// # <%# puts "value of first page check: #{@first_page_check}" %>
+// # <%# if @first_page_check == true %>
+// #   //$('#page_add_area').html("<%= j render partial: 'form' %>");
+// # <%# else %>
+// #   //$('#page_add_area').html("");
+// # <%# end %>
+
+
+$('#editable_pages_container').html("<%= j render partial: 'stories/editable_pages', locals: {story: @page.story } %>");

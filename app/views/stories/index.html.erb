@@ -1,5 +1,5 @@
 <ul>
-  <% Story.all.each do |story| %>
+  <% Story.where(published: true).each do |story| %>
     <li>
       <%= link_to story.title, story %> <%= link_to "Edit", edit_story_path(story) %>
     </li>

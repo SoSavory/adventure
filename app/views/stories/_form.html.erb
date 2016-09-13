@@ -10,28 +10,13 @@
     <%= f.label :published %>
     <%= f.check_box :published %>
 
-    <% if @story.persisted? %>
-      <% if @story.has_first_page? %>
-        <%= link_to "Edit First Page", edit_page_path(@story.pages.first), remote: true %>
-      <% else %>
-        <%= render partial: 'pages/form' %>
-      <% end %>
-    <% end %>
-
-
-    <% if @story.has_first_page? %>
-      <% (@story.levels[0]..@story.levels[1]).each do |level| %>
-        <ul class="level">
-        <% @story.pages.where(level: level).each do |page| %>
-          <li class="edit_page_page"><%= page.title %> <%= link_to "Edit", edit_page_path(page), remote: true, class: "edit_page_page_link" %> </li>
-        <% end %>
-        </div>
-      <% end %>
-    <% end %>
-
-
     <%= f.submit %>
   <% end %>
+  
+  <div id="editable_pages_container">
+    <%= render partial: 'editable_pages', locals: {story: @story} %>
+  </div>
+
 </div>
 
 

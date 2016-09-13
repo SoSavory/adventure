@@ -1,12 +1,14 @@
 class PagesController < ApplicationController
   def new
     @page = Page.new()
+
   end
 
   def create
     @page = Page.new(page_params)
     @page.story_id = session[:page_story_id] || session[:story_id]
     @page.parent_id = session[:page_parent_id]
+    @first_page_check = params[:first_page_check] || false
     respond_to do |format|
         if @page.save
           session[:page_parent_id] = nil
