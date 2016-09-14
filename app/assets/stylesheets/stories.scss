@@ -184,7 +184,7 @@
 }
 
 .level_title{
-  background-color: $dark_blue;
+  background-color: $blue;
   text-indent: 1em;
   color: $white;
   padding: 0.5em 0 0.5em 0;
@@ -194,18 +194,32 @@
 .edit_page_page_li{
   text-decoration: none;
   list-style: none;
-  text-indent: 2em;
+  border: 1px solid $aqua;
+  border-radius: 6px;
   display:none;
+  padding: 0.5em 0.5em 0.5em 0.25em;
+  margin: 0 0.5em 0 0.5em;
 }
 
 .edit_page_li_page_title{
   width: 50%;
+  float: left;
+  color: $aqua;
 }
 
 .edit_page_li_options{
   display: flex;
-  justify-content: space-between;
-  background-color: $dark_blue;
+  justify-content: flex-end;
+}
+
+.edit_page_page_link{
+  text-decoration: none;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}
+
+.edit_page_page_link:hover{
+  text-decoration: underline;
 }
 
 #forms_right_container{
