@@ -10,14 +10,14 @@
 
 #story_right_container{
   height: 100%;
-  width: 40%;
+  width: 30%;
   float:right;
 }
 
 
 #page_left_container{
   height: 100%;
-  width: 50%;
+  width: 60%;
   float: left;
   margin-left:1em;
 }
@@ -134,10 +134,94 @@
 
 //form stuff
 
-.level{
+#story_left_container{
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  float: left;
+}
+
+#story_form_container{
+  background-color: $white;
+  margin: 1em 0 0 1em;
+  border-radius: 6px;
+}
+
+#editable_pages_container{
+  margin: 0.5em 0 0 1em;
+  display: flex;
+  flex-direction: column;
+}
+
+
+#editable_pages_container{
 
 }
 
-.edit_page_page{
-  
+#edit_first_page_button{
+  color: $aqua;
+  border: 1px solid $aqua;
+  text-decoration: none;
+  padding: 1em 0 1em 0;
+  text-align: center;
+  border-radius: 6px;
+  margin-bottom: 1em;
+}
+
+#edit_first_page_button:hover{
+  color: $white;
+  background-color: $aqua;
+}
+
+.level{
+  width: 100%;
+  color: $white;
+  border: 1px solid $blue;
+  padding: 0 0 1em 0;
+  margin-bottom: 1em;
+  background-color: $blue;
+  border-radius: 6px;
+}
+
+.level_title{
+  background-color: $dark_blue;
+  text-indent: 1em;
+  color: $white;
+  padding: 0.5em 0 0.5em 0;
+  cursor: pointer;
+}
+
+.edit_page_page_li{
+  text-decoration: none;
+  list-style: none;
+  text-indent: 2em;
+  display:none;
+}
+
+.edit_page_li_page_title{
+  width: 50%;
+}
+
+.edit_page_li_options{
+  display: flex;
+  justify-content: space-between;
+  background-color: $dark_blue;
+}
+
+#forms_right_container{
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  float: right;
+  margin: 1em 1em 0 0;
+}
+
+#form_area{
+
+}
+
+#page_add_area{
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
 }

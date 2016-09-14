@@ -1,28 +1,32 @@
-<div class="container" style="width:40%; float:left;">
-  <%= form_for @story, html: {id: "story_form"} do |f| %>
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-    <br/>
-    <%= f.label :summary %>
-    <%= f.text_area :summary %>
-    <br/>
+<div id="story_left_container">
+  <div id="story_form_container">
+    <h2 class="form_header">Story Form</h2>
+    <%= form_for @story, html: {class: "form_container"} do |f| %>
+      <%= f.label :title %>
+      <%= f.text_field :title %>
 
-    <%= f.label :published %>
-    <%= f.check_box :published %>
+      <%= f.label :summary %>
+      <%= f.text_area :summary %>
 
-    <%= f.submit %>
-  <% end %>
-  
-  <div id="editable_pages_container">
-    <%= render partial: 'editable_pages', locals: {story: @story} %>
+      <%= f.label :published %>
+      <%= f.check_box :published %>
+
+      <%= f.submit %>
+    <% end %>
   </div>
 
+    <div id="editable_pages_container">
+      <%= render partial: 'editable_pages', locals: {story: @story} %>
+    </div>
 </div>
 
 
 
-<div id="form_area" style="width: 50%; float:right; border:1px solid black;">
-</div>
 
-<div id="page_add_area" style="width: 50%; float:right; border:1px solid black;">
+<div id="forms_right_container">
+  <div id="form_area">
+  </div>
+
+  <div id="page_add_area" >
+  </div>
 </div>

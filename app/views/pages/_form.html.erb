@@ -1,18 +1,19 @@
-<%= form_for(@page, remote: true) do |f| %>
+<h2 class="form_header">Page Form</h2>
+<%= form_for(@page, remote: true, html: {class: "form_container"}) do |f| %>
   <%= f.label      :title %>
   <%= f.text_field :title %>
 
    <br/>
 
    <%= f.label     :text %>
-   <%= f.text_area :text %>
-
-
-   <% if f.object.persisted? %>
-      <%= link_to "Add Page", add_page_path(page_parent: f.object.id), remote: true  %>
-   <% end %>
+   <%= f.text_area :text, rows: 10 %>
 
    <%#= hidden_field_tag :first_page_check, first_page_check %>
 
    <%= f.submit %>
+
+   <% if f.object.persisted? %>
+      <%= link_to "Add Page", add_page_path(page_parent: f.object.id), remote: true, class: "add_page_button"  %>
+   <% end %>
+   
 <% end %>

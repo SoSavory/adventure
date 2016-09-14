@@ -1,6 +1,6 @@
 <% if story.persisted? %>
   <% if story.has_first_page? %>
-    <%= link_to "Edit First Page", edit_page_path(story.pages.first), remote: true %>
+    <%= link_to "Edit First Page", edit_page_path(story.pages.first), remote: true, id: "edit_first_page_button" %>
   <% else %>
     <%= render partial: 'pages/form', locals: {first_page_check: true} %>
   <% end %>
@@ -9,10 +9,23 @@
 
 <% if story.has_first_page? %>
   <% (story.levels[0]..story.levels[1]).each do |level| %>
-    <ul class="level">level: <%= level %>
+    <ul class="level"><h3 class="level_title">Level: <%= level %></h3>
     <% story.pages.where(level: level).each do |page| %>
-      <li class="edit_page_page_li"><%= page.title %> <%= link_to "Edit", edit_page_path(page), class: "edit_page_page_link", remote: true %> </li>
+      <li class="edit_page_page_li">
+        <h4 class="edit_page_li_page_title">
+          <%= page.title %>
+        </h4>
+         <div class="edit_page_li_options">
+           <%= link_to "Edit", edit_page_path(page), class: "edit_page_page_link", remote: true %>
+         </div>
+       </li>
     <% end %>
   </ul>
   <% end %>
 <% end %>
+
+<script type="text/javascript">
+  $('.level_title').click(function() {
+    $(this).parent().children(".edit_page_page_li").toggle();
+  });
+</script>

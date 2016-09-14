@@ -24,6 +24,7 @@ class PagesController < ApplicationController
     @page.update_attributes(page_params)
     respond_to do |format|
       if @page.save
+        session[:page_parent_id] = nil
         format.js {}
       end
     end

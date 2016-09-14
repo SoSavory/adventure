@@ -32,7 +32,7 @@ class StoriesController < ApplicationController
       session[:page_parent_id] = nil
       session[:page_story_id]  = nil
       session[:story_id]       = nil
-      redirect_to @story
+      redirect_to story_edit_path(@story)
     end
   end
 

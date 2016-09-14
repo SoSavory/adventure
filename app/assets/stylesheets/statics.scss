@@ -9,7 +9,7 @@
   height: 5em;
   display: flex;
   align-items: center;
-  background-color: $dark_blue;
+  background-color: $blue;
 }
 
 #nav_section_left{
@@ -33,9 +33,9 @@
 #nav_box_link{
   align-self: flex-end;
   padding: 0.25em 0.75em 0.25em 0.75em;
-  border: 1px solid $yellow;
+  border: 1px solid $aqua;
   border-radius: 6px;
-  color: $yellow;
+  color: $aqua;
   text-decoration: none;
   margin-right: 0.5em;
   transition: .5s ease-in;
@@ -43,7 +43,7 @@
 }
 
 #nav_box_link:hover{
-  background-color: $yellow;
+  background-color: $aqua;
   color: $white;
 }
 
