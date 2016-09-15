@@ -177,10 +177,9 @@
   width: 100%;
   color: $white;
   border: 1px solid $blue;
-  padding: 0 0 1em 0;
+  padding: 0 0 0 0;
   margin-bottom: 1em;
-  background-color: $blue;
-  border-radius: 6px;
+  background-color: $very_light_blue;
 }
 
 .level_title{
@@ -192,19 +191,18 @@
 }
 
 .edit_page_page_li{
+  background-color: $blue;
   text-decoration: none;
   list-style: none;
-  border: 1px solid $aqua;
-  border-radius: 6px;
   display:none;
   padding: 0.5em 0.5em 0.5em 0.25em;
-  margin: 0 0.5em 0 0.5em;
+  margin: 0.5em;
 }
 
 .edit_page_li_page_title{
   width: 50%;
   float: left;
-  color: $aqua;
+  color: $white;
 }
 
 .edit_page_li_options{
