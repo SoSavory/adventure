@@ -72,12 +72,13 @@
   };
 
   function cyclePages(){
-    try {
-      setCurrentPage($previous_pages[$previous_pages_current_index - 1], false);
-    } catch(err) {
-      $('#reminder').html("You are already on the first page.");
-      $('#reminder').show(500);
-    } finally {
+      try {
+        setCurrentPage($previous_pages[$previous_pages_current_index - 1], false);
+      } catch(err) {
+        $('#reminder').html("You are already on the first page.");
+        $('#reminder').show(500);
+      }
+      finally {
       if ($previous_pages_current_index === 0) {
         $previous_pages_current_index = 0
       } else {
@@ -87,9 +88,7 @@
   }
 
   function backToStart(){
-    $previous_pages = [];
-    $previous_pages_current_index = -1;
-    setCurrentPage($start_page);
+    setCurrentPage($start_page, true);
   };
 
   // $.each($story.pages, function() {

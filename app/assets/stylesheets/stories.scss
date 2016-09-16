@@ -92,6 +92,7 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  margin-top: 0.5em;
 }
 
 #reminder{
@@ -179,7 +180,7 @@
   border: 1px solid $blue;
   padding: 0 0 0 0;
   margin-bottom: 1em;
-  background-color: $very_light_blue;
+  background-color: $purple;
 }
 
 .level_title{
