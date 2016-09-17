@@ -1,0 +1,13 @@
+
+  <ul id="unpublished_stories_list" class="stories_list">
+    <% @unpublished_stories.each do |story| %>
+      <li class="story_in_list">
+        <%= link_to story.title, story_path(story), class: "story_in_list_title" %>
+        <div class="edit_story_options_container">
+          <%= link_to "Publish", publish_story_path(story), data: {confirm: "Are you sure you want to publish this?"}, method: :post, remote: true, class: "story_in_list_link aqua" %>
+          <%= link_to "Edit", edit_story_path(story), class: "story_in_list_link yellow" %>
+          <%= link_to "Destroy", edit_story_path(story), class: "story_in_list_link crimson" %>
+        </div>
+      </li>
+    <% end %>
+  </ul>
