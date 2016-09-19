@@ -1,13 +1,21 @@
-<% if @published_stories  && @published_stories.count > 0%>
-  <div id="published_stories_container">
-    <%= render partial: 'user_published_stories' %>
-  </div>
-<% end %>
-
-<% if @var == "private" %>
-  <% if @unpublished_stories && @unpublished_stories.count > 0 %>
-    <div id="unpublished_stories_container">
-      <%= render partial: 'user_unpublished_stories' %>
+<div id="index_container">
+  <% if @published_stories  && @published_stories.count > 0%>
+    <div id="published_stories_container">
+      <%= render partial: 'user_published_stories' %>
     </div>
   <% end %>
-<% end %>
+
+  <% if @var == "private" %>
+    <% if @unpublished_stories && @unpublished_stories.count > 0 %>
+      <div id="unpublished_stories_container">
+        <%= render partial: 'user_unpublished_stories' %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+<script type="text/javascript">
+  $('.story_in_list').hover(function() {
+    $(this).children('.edit_story_options_container').toggle();
+  });
+</script>
