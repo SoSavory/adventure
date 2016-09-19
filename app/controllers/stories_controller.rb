@@ -18,21 +18,31 @@ class StoriesController < ApplicationController
 
   def edit
     @story = Story.find(params[:id])
-    if @story.has_first_page?
+    if current_user == @story.user
+      if @story.has_first_page?
+      else
+        @page = Page.new()
+        session[:story_id] = @story.id
+      end
     else
-      @page = Page.new()
-      session[:story_id] = @story.id
+      flash[:alert] = "You cannot edit someone elses story!"
+      redirect_to root_path()
     end
   end
 
   def update
     @story = Story.find(params[:id])
-    @story.update_attributes(story_params)
-    if @story.save
-      session[:page_parent_id] = nil
-      session[:page_story_id]  = nil
-      session[:story_id]       = nil
-      redirect_to edit_story_path(@story)
+    if current_user == @story.user
+      @story.update_attributes(story_params)
+      if @story.save
+        session[:page_parent_id] = nil
+        session[:page_story_id]  = nil
+        session[:story_id]       = nil
+        redirect_to edit_story_path(@story)
+      end
+    else
+      flash[:alert] = "You cannot edit someone elses story!"
+      redirect_to root_path()
     end
   end
 
