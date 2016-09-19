@@ -80,6 +80,6 @@ test:
 #
 production:
   <<: *default
-  database: adventure_production
-  username: adventure
-  password: <%= ENV['ADVENTURE_DATABASE_PASSWORD'] %>
+  database: which_doctor
+  username: avery
+  password: <%= ENV['POSTGRESQL_PASSWORD'] %>
