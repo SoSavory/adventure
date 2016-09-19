@@ -79,7 +79,11 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
-  database: which_doctor
-  username: avery
+  adapter: postgresql
+  encoding: utf8
+  reconnect: false
+  pool: 5
+  database: <%= ENV['POSTGRESQL_DATABASE'] %>
+  username: <%= ENV['POSTGRESQL_USER'] %>
   password: <%= ENV['POSTGRESQL_PASSWORD'] %>
+  host: localhost
