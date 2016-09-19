@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Adventure</title>
+  <title>Which Doctor</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 <%= render 'statics/navigation' %>
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+<p class="flash bg_yellow"><%= notice %></p>
+<p class="flash bg_crimson"><%= alert %></p>
 <%= yield %>
 
 </body>

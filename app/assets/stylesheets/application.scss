@@ -37,6 +37,9 @@ h1, h2, h3, h4, h5, h6, dl, ol, ul, p, button, label, input, textarea, a {
    color:$white;
  }
 
+ a{
+   color: $aqua;
+ }
 
  a:hover{
    cursor:pointer;
@@ -50,12 +53,26 @@ h1, h2, h3, h4, h5, h6, dl, ol, ul, p, button, label, input, textarea, a {
    color: $crimson;
  }
 
+ .bg_crimson{
+   background-color: $crimson;
+ }
+
  .yellow{
    color: $yellow;
  }
 
+ .bg_yellow{
+   background-color: $yellow;
+ }
+
  .aqua{
    color: $aqua;
+ }
+
+ .flash{
+   width: 100%;
+   text-align: center;
+   color: $white;
  }
 
  .form_container{

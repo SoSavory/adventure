@@ -1,9 +1,16 @@
-<ul>
-  <% Story.where(published: true).each do |story| %>
-    <li>
-      <%= link_to story.title, story %> <%= link_to "Edit", edit_story_path(story) %>
-    </li>
-  <% end %>
-</ul>
 
-<%= link_to "New Story", new_story_path %>
+  <% if user_signed_in? %>
+    <div style="width: 100%; padding-top: 1em; padding-bottom: 1em; margin-top: 2em;">
+      <%= link_to "New Story", new_story_path, class: "new_story_button" %>
+    </div>
+  <% end %>
+
+<div style="margin-top: 3em;"
+  <ul id="published_stories_list" class="stories_list">
+    <% @published_stories.each do |story| %>
+      <li class="story_in_list">
+        <%= link_to story.title, story_path(story), class: "story_in_list_title" %>
+      </li>
+    <% end %>
+  </ul>
+</div>

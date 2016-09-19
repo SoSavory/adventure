@@ -1,5 +1,21 @@
 @import 'vars';
 
+.new_story_button{
+  width: 100%;
+  color: $aqua;
+  text-decoration: none;
+  padding: 1em;
+  border: 1px solid $aqua;
+  margin: 1em;
+  vertical-align: bottom;
+}
+
+.new_story_button:hover{
+  background-color: $aqua;
+  color: $white;
+  cursor: pointer;
+}
+
 #story_container{
   margin-left: auto;
   margin-right: auto;
@@ -17,7 +33,7 @@
 
 #page_left_container{
   height: 100%;
-  width: 60%;
+  width: 55%;
   float: left;
   margin-left:1em;
 }
@@ -41,7 +57,7 @@
 }
 
 #story_info{
-  padding: 1em;
+  //padding: 1em;
   width: 100%;
   height: 100%;
 }
@@ -184,7 +200,7 @@
 }
 
 .level_title{
-  background-color: $blue;
+  background-color: $medium_blue;
   text-indent: 1em;
   color: $white;
   padding: 0.5em 0 0.5em 0;
@@ -192,7 +208,7 @@
 }
 
 .edit_page_page_li{
-  background-color: $blue;
+  background-color: $medium_blue;
   text-decoration: none;
   list-style: none;
   display:none;
@@ -201,13 +217,16 @@
 }
 
 .edit_page_li_page_title{
-  width: 50%;
+  width: 65%;
   float: left;
   color: $white;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .edit_page_li_options{
   display: flex;
+  width: 30%;
   justify-content: flex-end;
 }
 
@@ -242,30 +261,39 @@
 //index/user profile stuff
 
 #index_container{
+  width: 80%;
   display:flex;
-  justify-content: space-between;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1em;
 }
 
 #published_stories_container{
-  width: 40%;
-  margin-left: 2em;
+
 }
 
 #unpublished_stories_container{
-  width: 40%;
-  margin-right: 2em;
+
+}
+
+.user_profile_story_header{
+  text-align: center;
+
 }
 
 #published_stories_list{
   max-height: 720px;
   overflow-y: auto;
   padding: 0 1em 0 1em;
+  background-color: $blue;
 }
 
 #unpublished_stories_list{
   max-height: 720px;
   overflow-y: auto;
   padding: 0 1em 0 1em;
+  background-color: $blue;
 }
 
 .story_in_list{
@@ -274,12 +302,13 @@
   justify-content: space-between;
   padding: 1em;
   margin: 1em 0 1em 0;
-  border: 1px solid grey;
+  border: 1px solid $medium_blue;
 }
 
 .story_in_list:hover{
-  background-color: $blue;
+  background-color: $medium_blue;
   border:none;
+  cursor: pointer;
 }
 
 .story_in_list_title{
@@ -297,6 +326,7 @@
 
 .story_in_list_link{
   text-decoration:none;
+  padding: 0 0.5em 0 0.5em;
 }
 
 .story_in_list_link:hover{

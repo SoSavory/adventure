@@ -52,6 +52,7 @@ class StoriesController < ApplicationController
   end
 
   def index
+    @published_stories = Story.where(published: true)
   end
 
   private
