@@ -1,7 +1,7 @@
 class Page < ActiveRecord::Base
   belongs_to :story
   has_many :children, class_name: "Page",
-                      foreign_key: "parent_id"
+                      foreign_key: "parent_id", dependent: :destroy
   belongs_to :parent, class_name: "Page"
 
   after_create :set_level

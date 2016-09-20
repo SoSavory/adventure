@@ -62,6 +62,16 @@ class PagesController < ApplicationController
     end
   end
 
+  def delete
+    page = Page.find(params[:id])
+    if user_signed_in? && current_user == page.story.user
+      page.destroy
+      respond_to do |format|
+        format.js {render inline: "location.reload();"}
+      end
+    end
+  end
+
   private
 
   def page_params

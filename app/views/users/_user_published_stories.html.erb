@@ -6,7 +6,7 @@
         <% if @var == "private" %>
         <div class="edit_story_options_container">
           <%= link_to "Edit", edit_story_path(story), class: "story_in_list_link yellow" %>
-          <%= link_to "Destroy", edit_story_path(story), class: "story_in_list_link crimson" %>
+          <%= link_to "Destroy", delete_story_path(story), data: {confirm: "Are you sure? This will irreversibly destroy this story as well as all of its pages"}, method: :delete, remote: true, class: "story_in_list_link crimson" %>
         </div>
         <% end %>
       </li>

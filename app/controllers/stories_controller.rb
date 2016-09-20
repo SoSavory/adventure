@@ -1,6 +1,6 @@
 class StoriesController < ApplicationController
 
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :delete]
   def new
     @story = Story.new()
   end
@@ -52,7 +52,7 @@ class StoriesController < ApplicationController
 
   def publish_story
     story = Story.find(params[:id])
-    if current_user && current_user == story.user
+    if user_signed_in? && current_user == story.user
       story.update_attributes(published: true)
       story.save
       respond_to do |format|
@@ -63,6 +63,16 @@ class StoriesController < ApplicationController
 
   def index
     @published_stories = Story.where(published: true)
+  end
+
+  def delete
+    story = Story.find(params[:id])
+    if user_signed_in? && current_user == story.user
+      story.destroy
+      respond_to do |format|
+        format.js {render inline: "location.reload();"}
+      end
+    end
   end
 
   private
