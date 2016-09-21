@@ -22,7 +22,12 @@ default: &default
   encoding: unicode
   # For details on connection pooling, see rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
-  pool: 5
+  pool: <%= ENV["POSTGRESQL_MAX_CONNECTIONS"] || 5 %>
+  username: <%= user %>
+  password: <%= password %>
+  host: localhost
+  port: <%= ENV["#{db_service}_SERVICE_PORT"] %>
+  database: <%= ENV["POSTGRESQL_DATABASE"] %>
 
 development:
   <<: *default
@@ -82,12 +87,4 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  adapter: postgresql
-  encoding: utf8
-  reconnect: false
-  pool: <%= ENV["POSTGRESQL_MAX_CONNECTIONS"] || 5 %>
-  username: <%= user %>
-  password: <%= password %>
-  host: <%= ENV["#{db_service}_SERVICE_HOST"] %>
-  port: <%= ENV["#{db_service}_DATABASE"] %>
-  database: <%= ENV["POSTGRESQL_DATABASE"] %>
+  <<: *default
