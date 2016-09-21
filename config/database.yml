@@ -16,7 +16,7 @@
 #
 <% user = ENV.key?("POSTGRESQL_ADMIN_PASSWORD") ? "root" : ENV["POSTGRESQL_USER"] %>
 <% password = ENV.key?("POSTGRESQL_ADMIN_PASSWORD") ? ENV["POSTGRESQL_ADMIN_PASSWORD"] : ENV["POSTGRESQL_PASSWORD"] %>
-<% db_service = ENV.fetch("DATABASE_SERVICE_NAME", "").upcase  || nil%>
+<% db_service = ENV.fetch("DATABASE_SERVICE_NAME", "").upcase %>
 default: &default
   adapter: postgresql
   encoding: unicode
@@ -25,8 +25,8 @@ default: &default
   pool: <%= ENV["POSTGRESQL_MAX_CONNECTIONS"] || 5 %>
   username: <%= user %>
   password: <%= password %>
-  host: 172.31.8.211
-  port: <%= ENV["#{db_service}_SERVICE_PORT"] %>
+  host: <%= ENV["#{db_service}_SERVICE_NAME"] %>
+  port: 5432
   database: <%= ENV["POSTGRESQL_DATABASE"] %>
 
 development:
