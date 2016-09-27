@@ -8,6 +8,7 @@
       <div id="child_pages_container"></div>
       <div id="story_button_container">
         <div id="reminder" onclick="$(this).hide(500)"></div>
+        <a id="mark_page_button" onclick="setPageMarker()">Set Save Point</a>
         <a id="back_button" onclick="cyclePages()">Previous Page</a>
         <a id="restart_button" onclick="backToStart()">Restart</a>
       </div>
@@ -90,6 +91,20 @@
   function backToStart(){
     setCurrentPage($start_page, true);
   };
+
+  function setPageMarker(){
+    $current_page_marker = $current_page.id;
+    alert("Save Point Set!");
+    $('#mark_page_button').html("Return to Save Point");
+    $('#mark_page_button').attr("onclick", "returnToMarkedPage()");
+  }
+
+  function returnToMarkedPage(){
+    setCurrentPage($current_page_marker, true);
+    alert("Returning to Save Point!");
+    $('#mark_page_button').html("Set Save Point");
+    $('#mark_page_button').attr("onclick", "setPageMarker()");
+  }
 
   // $.each($story.pages, function() {
   //   $("#pages").append("<li onClick='setCurrentPage(" + this.id + ")'>" + this.title + "</li>");

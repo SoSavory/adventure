@@ -39,7 +39,7 @@ class Story < ActiveRecord::Base
   end
 
   def first_page
-
+    self.pages.where(level: self.levels[0]);
   end
 
 

@@ -123,6 +123,19 @@
   cursor: pointer;
 }
 
+#mark_page_button{
+  color: $aqua;
+  border: 1px solid $aqua;
+  padding: 0.5em;
+  margin-right: 1em;
+}
+
+#mark_page_button:hover{
+  color: $white;
+  background-color: $aqua;
+  font-style: italic;
+}
+
 #back_button{
   color: $yellow;
   border: 1px solid $yellow;
@@ -140,7 +153,6 @@
   color: $crimson;
   border: 1px solid $crimson;
   padding:0.5em;
-  margin-left: 1em;
 }
 
 #restart_button:hover{
