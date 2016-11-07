@@ -1,0 +1,22 @@
+<h2 class="form_header">Convergence Form</h2>
+<%= form_for(@convergence, remote: true, html: {class: "form_container"}) do |f| %>
+  <%= f.label      :title %>
+  <%= f.text_field :title %>
+
+   <br/>
+
+
+   <%= f.label :parent_id, "Show Convergence" %>
+   <%= f.select :parent_id, grouped_options_for_select(library), {}, {class: 'select2'} %>
+
+   <%= f.label :child_id, "Destination Page" %>
+   <%= f.select :child_id, grouped_options_for_select(library), {}, {class: 'select2'} %>
+
+
+   <%= f.submit %>
+
+<% end %>
+
+<script type='text/javascript'>
+  $('.select2').select2();
+</script>
