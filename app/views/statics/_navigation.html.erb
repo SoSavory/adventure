@@ -7,6 +7,7 @@
     <div id="nav_box_link_container">
       <%= link_to "Stories", stories_path, id: "nav_box_link" %>
       <% if user_signed_in? %>
+        <%= link_to "New Story", new_story_path(), id: "nav_box_link" %>
         <%= link_to "My Profile", user_path(current_user), id: "nav_box_link" %>
         <%= link_to "Sign Out", destroy_user_session_path, method: 'delete', id: "nav_box_link" %>
       <% else %>

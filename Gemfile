@@ -20,6 +20,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
 gem 'puma'
 
+gem 'select2-rails'
+
 
 
 group :development, :test do

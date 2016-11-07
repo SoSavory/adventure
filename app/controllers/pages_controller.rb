@@ -1,7 +1,6 @@
 class PagesController < ApplicationController
   def new
     @page = Page.new()
-
   end
 
   def create
@@ -13,7 +12,6 @@ class PagesController < ApplicationController
         if @page.save
           session[:page_parent_id] = nil
           session[:page_story_id]  = nil
-          session[:story_id]       = nil
           format.js
         end
     end
@@ -43,22 +41,24 @@ class PagesController < ApplicationController
   end
 
   def add_page
-    @page_parent = Page.find(params[:page_parent])
+    @page_parent = Page.where(id: params[:page_parent]).pluck(:id, :story_id)[0]
     @page = Page.new()
-    session[:page_parent_id] = @page_parent.id || nil
-    session[:page_story_id]  = @page_parent.story_id
+    session[:page_parent_id] = @page_parent[0] || nil
+    session[:page_story_id]  = @page_parent[1]
     respond_to do |format|
       format.js
       format.html
     end
   end
 
-  def show_child_pages
-    @page_parent = Page.find(params[:page_parent])
-    @page_children = @page_parent.children
+  def show_relations
+    current_page = params[:current_page]
+    page_parent = Page.find(current_page).parent_id
+    page_children = Page.where(parent_id: current_page).pluck(:id, :title)
+    page_child_convergences = Convergence.where(child_id: current_page).pluck(:id, :title, :parent_id)
+    page_parent_convergences = Convergence.where(parent_id: current_page).pluck(:id, :title, :child_id)
     respond_to do |format|
       format.js
-      format.html
     end
   end
 

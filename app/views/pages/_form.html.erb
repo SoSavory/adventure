@@ -14,6 +14,7 @@
 
    <% if f.object.persisted? %>
       <%= link_to "Add Page", add_page_path(page_parent: f.object.id), remote: true, class: "add_page_button"  %>
+      <%= link_to "View Relationships", ancestry_page_path(current_page: f.object.id), remote: true, class: "add_page_button" %>
    <% end %>
-   
+
 <% end %>

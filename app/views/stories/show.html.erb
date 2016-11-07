@@ -63,9 +63,15 @@
     $child_pages = $story.pages.filter(function(val) {
       return val.parent_id === page.id;
     });
+    $child_convergences = $story.convergences.filter(function(val) {
+      return val.parent_id == page.id;
+    });
     $.each($child_pages, function() {
       $("#child_pages_container").append("<a class='child_page_link' onClick='setCurrentPage(" + this.id + ", true)'>" + this.title + "</a>");
     });
+    $.each($child_convergences, function() {
+      $("#child_pages_container").append("<a class='child_page_link' onClick='setCurrentPage(" + this.child_id + ", true)'>" + this.title + "</a>")
+    })
   };
 
   function setCurrentText(page){

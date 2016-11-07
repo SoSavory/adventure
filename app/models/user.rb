@@ -5,4 +5,9 @@ class User < ActiveRecord::Base
           :rememberable, :trackable
 
   has_many :stories
+  has_many :families, through: :family_user
+
+  has_many :story_favorites
+  has_many :user_favorites
+
 end

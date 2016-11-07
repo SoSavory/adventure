@@ -17,12 +17,13 @@ class StoriesController < ApplicationController
   end
 
   def edit
+    #lets take a look at this
     @story = Story.find(params[:id])
     if current_user == @story.user
+      session[:story_id] = @story.id
       if @story.has_first_page?
       else
         @page = Page.new()
-        session[:story_id] = @story.id
       end
     else
       flash[:alert] = "You cannot edit someone elses story!"
@@ -37,7 +38,6 @@ class StoriesController < ApplicationController
       if @story.save
         session[:page_parent_id] = nil
         session[:page_story_id]  = nil
-        session[:story_id]       = nil
         redirect_to edit_story_path(@story)
       end
     else

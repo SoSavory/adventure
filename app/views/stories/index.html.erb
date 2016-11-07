@@ -5,12 +5,10 @@
     </div>
   <% end %>
 
-<div style="margin-top: 3em;"
-  <ul id="published_stories_list" class="stories_list">
-    <% @published_stories.each do |story| %>
-      <li class="story_in_list">
-        <%= link_to story.title, story_path(story), class: "story_in_list_title" %>
-      </li>
-    <% end %>
-  </ul>
+<div id="stories_index_container" style="margin-top: 3em;">
+      <% @published_stories.each do |story| %>
+        <div class="story_in_list">
+          <%= link_to story.title, story_path(story), class: "story_in_list_title" %>
+        </div>
+      <% end %>
 </div>

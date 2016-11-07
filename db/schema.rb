@@ -11,10 +11,83 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 5) do
+ActiveRecord::Schema.define(version: 20161021181657) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "aspects", force: :cascade do |t|
+    t.string   "title",      null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "convergences", force: :cascade do |t|
+    t.integer  "story_id",   null: false
+    t.integer  "parent_id",  null: false
+    t.integer  "child_id",   null: false
+    t.string   "title",      null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "families", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "admin_id"
+    t.boolean  "private"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "family_admins", force: :cascade do |t|
+    t.integer  "family_id"
+    t.integer  "admin_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "family_admins", ["admin_id"], name: "index_family_admins_on_admin_id", using: :btree
+  add_index "family_admins", ["family_id"], name: "index_family_admins_on_family_id", using: :btree
+
+  create_table "family_aspects", force: :cascade do |t|
+    t.integer  "family_id"
+    t.integer  "aspect_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "family_aspects", ["aspect_id"], name: "index_family_aspects_on_aspect_id", using: :btree
+  add_index "family_aspects", ["family_id"], name: "index_family_aspects_on_family_id", using: :btree
+
+  create_table "family_moderators", force: :cascade do |t|
+    t.integer  "family_id"
+    t.integer  "moderator_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "family_moderators", ["family_id"], name: "index_family_moderators_on_family_id", using: :btree
+  add_index "family_moderators", ["moderator_id"], name: "index_family_moderators_on_moderator_id", using: :btree
+
+  create_table "family_stories", force: :cascade do |t|
+    t.integer  "family_id"
+    t.integer  "story_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "family_stories", ["family_id"], name: "index_family_stories_on_family_id", using: :btree
+  add_index "family_stories", ["story_id"], name: "index_family_stories_on_story_id", using: :btree
+
+  create_table "family_users", force: :cascade do |t|
+    t.integer  "family_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "family_users", ["family_id"], name: "index_family_users_on_family_id", using: :btree
+  add_index "family_users", ["user_id"], name: "index_family_users_on_user_id", using: :btree
 
   create_table "pages", force: :cascade do |t|
     t.integer  "story_id",   null: false
@@ -42,15 +115,35 @@ ActiveRecord::Schema.define(version: 5) do
   add_index "stories", ["published"], name: "index_stories_on_published", using: :btree
   add_index "stories", ["user_id"], name: "index_stories_on_user_id", using: :btree
 
-  create_table "user_favorites", force: :cascade do |t|
-    t.integer  "user_id"
+  create_table "story_aspects", force: :cascade do |t|
     t.integer  "story_id"
+    t.integer  "aspect_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "user_favorites", ["story_id"], name: "index_user_favorites_on_story_id", using: :btree
-  add_index "user_favorites", ["user_id"], name: "index_user_favorites_on_user_id", using: :btree
+  add_index "story_aspects", ["aspect_id"], name: "index_story_aspects_on_aspect_id", using: :btree
+  add_index "story_aspects", ["story_id"], name: "index_story_aspects_on_story_id", using: :btree
+
+  create_table "story_favorites", force: :cascade do |t|
+    t.integer  "story_id_id"
+    t.integer  "user_id_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "story_favorites", ["story_id_id"], name: "index_story_favorites_on_story_id_id", using: :btree
+  add_index "story_favorites", ["user_id_id"], name: "index_story_favorites_on_user_id_id", using: :btree
+
+  create_table "user_favorites", force: :cascade do |t|
+    t.integer  "follower_id"
+    t.integer  "followed_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "user_favorites", ["followed_id"], name: "index_user_favorites_on_followed_id", using: :btree
+  add_index "user_favorites", ["follower_id"], name: "index_user_favorites_on_follower_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.datetime "created_at",                          null: false
