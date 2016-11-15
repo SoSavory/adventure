@@ -21,6 +21,12 @@ class StoriesController < ApplicationController
     @story = Story.find(params[:id])
     if current_user == @story.user
       session[:story_id] = @story.id
+      unless params[:reload] == true
+        session[:open_page_form] = nil
+        session[:open_relationships_form] = nil
+      end
+      puts " Page: #{session[:open_page_form]}"
+      puts " Relationships: #{session[:open_relationships_form]}"
       if @story.has_first_page?
       else
         @page = Page.new()
@@ -38,7 +44,7 @@ class StoriesController < ApplicationController
       if @story.save
         session[:page_parent_id] = nil
         session[:page_story_id]  = nil
-        redirect_to edit_story_path(@story)
+        redirect_to edit_story_path(@story, reload: "true")
       end
     else
       flash[:alert] = "You cannot edit someone elses story!"
