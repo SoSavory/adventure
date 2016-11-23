@@ -25,6 +25,11 @@
     <% end %>
   </div>
 
+<!--
+    Grab page convergences with page methods.
+    Loop through convergences
+      Loop through pages related to a convergence (should be one)
+-->
   <div>
     <h3 style="color: black">Parent Convergences</h3>
     <!-- <%= @page_parent_convergences %>
@@ -32,7 +37,17 @@
     <% if @page_parent_convergences.count > 0 %>
     <ul class="level">
       <h3 class="level_title relationship_title">Parent Convergences</h3>
-      <% @page_parent_convergences %>
+      <% @page_parent_convergences.each do |c| %>
+        <li class="edit_page_page_li">
+          <h4 class="edit_page_li_page_title">
+            <%= c[:title] %>
+          </h4>
+          <div class="edit_page_li_options">
+            <%= link_to "Edit", edit_convergence_path(c[:id]), class: "edit_page_page_link yellow", remote: true %>
+            <%= link_to "Delete", delete_convergence_path(c[:id]), data: {confirm: "Are you sure? This will irreversibly delete this convergence."}, method: :delete, class: "edit_page_page_link crimson", remote: true %> 
+          </div>
+        </li>
+      <% end %>
     </ul>
     <% else %>
     <% end %>

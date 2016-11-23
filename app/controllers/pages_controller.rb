@@ -56,25 +56,19 @@ class PagesController < ApplicationController
   def show_relations
     current_page = params[:current_page]
     session[:open_relationships_form] = current_page
+    current_page_object = Page.find(params[:current_page])
+
     puts session[:open_relationships_form]
+
     page_parent = Page.find(current_page).parent_id
     if page_parent != nil
       page_parent = Page.find(page_parent)
       @page_parent = [page_parent.id, page_parent.title, page_parent.level]
     end
+
     @page_children = Page.where(parent_id: current_page).pluck(:id, :title, :level)
-    @page_child_convergences = Convergence.where(child_id: current_page).pluck(:id, :title, :parent_id)
-      @page_child_convergences_pages = []
-      @page_child_convergences.each do |p|
-        page = Page.where(id: p[2]).pluck(:title, :level)[0]
-        @page_child_convergences_pages.push({convergence: p, page: page})
-      end
-    @page_parent_convergences = Convergence.where(parent_id: current_page).pluck(:id, :title, :child_id)
-      @page_parent_convergences_pages = []
-      @page_parent_convergences.each do |p|
-        page = Page.where(id: p[2]).pluck(:title, :level)[0]
-        @page_parent_convergences_pages.push({convergence: p, page: page})
-      end
+    @page_child_convergences = current_page_object.get_child_convergences_object
+    @page_parent_convergences = current_page_object.get_parent_convergences_object
 
     respond_to do |format|
       format.js

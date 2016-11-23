@@ -25,7 +25,7 @@ class ConvergencesController < ApplicationController
   end
 
   def delete
-    @convergence = Convergence.find(id)
+    @convergence = Convergence.find(params[:id])
     @convergence.destroy
     respond_to do |format|
       format.js {render inline: "location.reload();"}

@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   resources :users
   resources :convergences
     get 'add_convergence', action: :add_convergence, controller: 'convergences'
-
+    delete 'convergence/delete/:id', to: 'convergences#delete', as: 'delete_convergence'
 
 
 
